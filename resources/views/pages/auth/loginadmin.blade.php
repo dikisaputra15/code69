@@ -26,13 +26,13 @@
                             <input type="password" class="form-control form-control-user"
                                 id="exampleInputPassword" placeholder="Password" name="password" required>
                         </div>
-                       
-                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
                             Login
-                        </a>
-                       
+                        </button>
+
                     </form>
-                   
+
                 </div>
             </div>
         </div>
