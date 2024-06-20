@@ -64,4 +64,51 @@ class ProdukController extends Controller
         $kategoris = DB::table('kategoris')->get();
         return view('pages.produks.edit', compact('produk','kategoris','warungs'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $cekfile = $request->gambar;
+        $old_file = $request->old_file;
+        $file = $request->file('gambar');
+
+        if($cekfile != ""){
+            $filedel = Storage::url('gambarproduk/'. $old_file);
+
+            if(File::exists($filedel)) {
+                File::delete($filedel);
+            }
+
+            $extension = $file->getClientOriginalExtension();
+
+            $nama_file = str_replace(" ", "-", $request->gambar);
+            $num = hexdec(uniqid());
+
+            $filename = $nama_file.'_'.$num.'.'.$extension;
+
+            Storage::putFileAs('public/gambarproduk', $file, $filename);
+
+
+            DB::table('produks')->where('id',$id)->update([
+                'id_warung' => $request->id_warung,
+                'id_kategori' => $request->id_kategori,
+                'nama_produk' => $request->nama_produk,
+                'stok' => $request->stok,
+                'harga' => $request->harga,
+                'deskripsi_produk' => $request->deskripsi_produk,
+                'path_gambar' => $filename
+            ]);
+        }else{
+            DB::table('produks')->where('id',$id)->update([
+                'id_warung' => $request->id_warung,
+                'id_kategori' => $request->id_kategori,
+                'nama_produk' => $request->nama_produk,
+                'stok' => $request->stok,
+                'harga' => $request->harga,
+                'deskripsi_produk' => $request->deskripsi_produk
+            ]);
+        }
+
+        return redirect()->route('produk.index')->with('success', 'Produk successfully updated');
+
+    }
 }
