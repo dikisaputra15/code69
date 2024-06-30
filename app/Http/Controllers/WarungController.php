@@ -6,6 +6,7 @@ use App\Models\Warung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class WarungController extends Controller
 {
@@ -22,8 +23,18 @@ class WarungController extends Controller
 
     public function store(Request $request)
     {
+        $file = $request->file('gambar_warung');
+        $extension = $file->getClientOriginalExtension();
+        $nama_warung = str_replace(" ", "-", $request->nama_warung);
+        $num = hexdec(uniqid());
+        $filename = $nama_warung.'_'.$num.'.'.$extension;
+
+        Storage::putFileAs('public/gambarwarung', $file, $filename);
+
         Warung::create([
-            'nama_warung' => $request->nama_warung
+            'nama_warung' => $request->nama_warung,
+            'deskripsi_warung' => $request->deskripsi_warung,
+            'gambar_warung' => $filename
         ]);
 
         return redirect()->route('warung.index')->with('success', 'Kategori successfully created');
@@ -43,10 +54,46 @@ class WarungController extends Controller
 
     public function update(Request $request, $id)
     {
-        DB::table('warungs')->where('id',$id)->update([
-            'nama_warung' => $request->nama_warung
-        ]);
+        $cekfile = $request->gambar_warung;
+        $old_file = $request->old_file;
+        $file = $request->file('gambar_warung');
+
+
+        if($cekfile != ""){
+
+            $filedel = Storage::url('gambarwarung/'. $old_file);
+
+            if(File::exists($filedel)) {
+                File::delete($filedel);
+            }
+
+            $extension = $file->getClientOriginalExtension();
+
+            $nama_file = str_replace(" ", "-", $request->gambar_warung);
+            $num = hexdec(uniqid());
+
+            $filename = $nama_file.'_'.$num.'.'.$extension;
+
+            Storage::putFileAs('public/gambarproduk', $file, $filename);
+
+            DB::table('warungs')->where('id',$id)->update([
+                'nama_warung' => $request->nama_warung,
+                'deskripsi_warung' => $request->deskripsi_warung,
+                'gambar_warung' => $filename
+            ]);
+         }else{
+            DB::table('warungs')->where('id',$id)->update([
+                'nama_warung' => $request->nama_warung,
+                'deskripsi_warung' => $request->deskripsi_warung
+            ]);
+         }
 
         return redirect()->route('warung.index')->with('success', 'Warung successfully updated');
+    }
+
+    public function pilihwarung($id)
+    {
+        $warung = \App\Models\Warung::findOrFail($id);
+        return view('pages.fronts.pilihwarung', compact('warung'));
     }
 }

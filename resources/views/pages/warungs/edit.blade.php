@@ -21,7 +21,15 @@
                     <label>Nama Warung UMKM</label>
                     <input type="text" class="form-control" name="nama_warung" value="{{ $warung->nama_warung }}">
                 </div>
-
+                <div class="form-group">
+                    <label>Deskripsi Warung UMKM</label>
+                    <input type="text" class="form-control" name="deskripsi_warung" value="{{ $warung->deskripsi_warung }}">
+                </div>
+                <div class="form-group">
+                    <label>Gambar Warung</label>
+                    <input type="file" class="form-control" name="gambar_warung">
+                    <input type="text" class="form-control" name="old_file" value="{{ $warung->gambar_warung }}" hidden>
+                </div>
                 <div class="form-group">
                     <button class="btn btn-primary">Submit</button>
                 </div>
