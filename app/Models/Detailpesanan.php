@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Detailpesanan extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id_pesanan',
+        'id_produk',
+        'jml',
+        'harga_bayar',
+        'sub_total',
+    ];
 }

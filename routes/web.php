@@ -31,6 +31,8 @@ Route::get('/kategori/{id}/pilihkategori', [App\Http\Controllers\KategoriControl
 Route::get('/kategori/{id}/pilihkategori', [App\Http\Controllers\KategoriController::class, 'pilihkategori']);
 Route::get('/meja/{id}/lihatpesanan', [App\Http\Controllers\MejaController::class, 'lihatpesanan']);
 Route::get('/keranjang/delker/{id}', [App\Http\Controllers\KeranjangController::class, 'destroykeranjang']);
+Route::post('/meja/storepesan', [App\Http\Controllers\MejaController::class, 'storepesan']);
+Route::get('/meja/pembayaran', [App\Http\Controllers\MejaController::class, 'pembayaran']);
 Route::resource('keranjang', KeranjangController::class);
 
 Route::get('/admin', function () {

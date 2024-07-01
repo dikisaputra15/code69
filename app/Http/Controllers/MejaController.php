@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Meja;
+use App\Models\Pesanan;
+use App\Models\Detailpesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class MejaController extends Controller
 {
@@ -62,4 +65,45 @@ class MejaController extends Controller
         $meja = Meja::find($id);
         return view('pages.mejas.lihatpesanan', compact('keranjangs','total','meja'));
     }
+
+    public function storepesan(Request $request)
+    {
+        $id_meja = $request->id_meja;
+        $nama_pemesan = $request->nama_pemesan;
+        $tgl = Carbon::now();
+        $tgl_now = $tgl->format('Y-m-d');
+
+       $pesan = Pesanan::create([
+            'id_meja' => $id_meja,
+            'tgl_pemesanan' => $tgl_now,
+            'nama_pemesan' => $nama_pemesan,
+            'total_bayar' => $request->total_bayar
+        ]);
+
+        if($pesan){
+            $last_id = Pesan::latest()->first();
+            $pesan_id = $last_id->id;
+            $keranjangs = DB::table('keranjangs')
+                        ->where('id_meja', $id_meja)
+                        ->get();
+            foreach ($keranjangs as $keranjang) {
+                Detailpesan::create([
+                    'id_pesanan' => $pesan_id,
+                    'id_produk' => $keranjang->id_produk,
+                    'jml' => $keranjang->jml,
+                    'harga_bayar' => $keranjang->harga_bayar,
+                    'sub_total' => $keranjang->sub_total
+                ]);
+            }
+            DB::table('keranjangs')->where('id_meja',$id_meja)->delete();
+        }
+
+        return redirect("meja/pembayaran")->with('success', 'Data successfully Created');
+    }
+
+    public function pembayaran(Request $request)
+    {
+        echo "oke";
+    }
+
 }

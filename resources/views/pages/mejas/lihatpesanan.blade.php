@@ -44,20 +44,26 @@
                         </td>
                     </tr>
                 @endforeach
+
+                <form action="/meja/storepesan" method="POST">
+                    @csrf
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td>Total</td>
-                        <td>{{$total}}</td>
+                        <td>
+                            {{$total}}
+                            <input type="text" class="form-control" name="total_bayar" value="{{$total}}" hidden>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Atas Nama Pmesan</td>
+                        <td>Atas Nama Pemesan</td>
                         <td>
                             <input type="text" class="form-control" name="nama_pemesan" placeholder="Nama Pemesan" required>
                             <input type="text" class="form-control" name="id_meja" value="{{$meja->id}}" hidden>
@@ -71,6 +77,8 @@
                         <td></td>
                         <td><button class="btn btn-primary">Lanjut Pesan</button></td>
                     </tr>
+                </form>
+
                 </tbody>
             </table>
         </div>
