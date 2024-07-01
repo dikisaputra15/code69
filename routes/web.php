@@ -30,6 +30,7 @@ Route::get('/warung/{id}/pilihwarung', [App\Http\Controllers\WarungController::c
 Route::get('/kategori/{id}/pilihkategori', [App\Http\Controllers\KategoriController::class, 'pilihkategori']);
 Route::get('/kategori/{id}/pilihkategori', [App\Http\Controllers\KategoriController::class, 'pilihkategori']);
 Route::get('/meja/{id}/lihatpesanan', [App\Http\Controllers\MejaController::class, 'lihatpesanan']);
+Route::get('/keranjang/delker/{id}', [App\Http\Controllers\KeranjangController::class, 'destroykeranjang']);
 Route::resource('keranjang', KeranjangController::class);
 
 Route::get('/admin', function () {

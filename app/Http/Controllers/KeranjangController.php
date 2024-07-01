@@ -31,4 +31,14 @@ class KeranjangController extends Controller
 
     }
 
+    public function destroykeranjang($id)
+    {
+        $meja = Keranjang::find($id);
+        $id_meja = $meja->id_meja;
+        $mastermeja = Meja::find($id_meja);
+
+        DB::table('keranjangs')->where('id',$id)->delete();
+        return redirect("meja/$mastermeja->id/lihatpesanan")->with('success', 'Data successfully Deleted');
+    }
+
 }

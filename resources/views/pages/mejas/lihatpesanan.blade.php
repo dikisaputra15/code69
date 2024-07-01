@@ -58,7 +58,10 @@
                         <td></td>
                         <td></td>
                         <td>Atas Nama Pmesan</td>
-                        <td><input type="text" class="form-control" name="nama_pemesan" placeholder="Nama Pemesan" required></td>
+                        <td>
+                            <input type="text" class="form-control" name="nama_pemesan" placeholder="Nama Pemesan" required>
+                            <input type="text" class="form-control" name="id_meja" value="{{$meja->id}}" hidden>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>

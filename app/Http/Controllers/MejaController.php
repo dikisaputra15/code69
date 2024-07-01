@@ -59,6 +59,7 @@ class MejaController extends Controller
         $total = DB::table('keranjangs')
                 ->where('keranjangs.id_meja', $id)
                 ->sum('sub_total');
-        return view('pages.mejas.lihatpesanan', compact('keranjangs','total'));
+        $meja = Meja::find($id);
+        return view('pages.mejas.lihatpesanan', compact('keranjangs','total','meja'));
     }
 }
