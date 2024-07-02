@@ -37,6 +37,14 @@
 
         <!-- Nav Item - User Information -->
         <li class="nav-item">
+            <a class="btn btn-primary" href="{{ Route('pembayaran.index') }}">
+                Pembayaran
+            </a>
+        </li>
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <li class="nav-item">
             <a class="btn btn-primary" href="{{ Route('keranjang.index') }}">
                 <i class="fas fa-shopping-cart"></i>
                 Pesanan Saya

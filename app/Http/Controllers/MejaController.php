@@ -58,7 +58,7 @@ class MejaController extends Controller
         $keranjangs = DB::table('keranjangs')
                 ->join('produks', 'produks.id', '=', 'keranjangs.id_produk')
                 ->join('mejas', 'mejas.id', '=', 'keranjangs.id_meja')
-                ->select('keranjangs.*', 'produks.nama_produk', 'mejas.no_meja')->where('keranjangs.id_meja', $id)->orderBy('keranjangs.id', 'desc')->get();
+                ->select('keranjangs.*', 'produks.nama_produk', 'produks.path_gambar', 'mejas.no_meja')->where('keranjangs.id_meja', $id)->orderBy('keranjangs.id', 'desc')->get();
         $total = DB::table('keranjangs')
                 ->where('keranjangs.id_meja', $id)
                 ->sum('sub_total');
@@ -81,13 +81,13 @@ class MejaController extends Controller
         ]);
 
         if($pesan){
-            $last_id = Pesan::latest()->first();
+            $last_id = Pesanan::latest()->first();
             $pesan_id = $last_id->id;
             $keranjangs = DB::table('keranjangs')
                         ->where('id_meja', $id_meja)
                         ->get();
             foreach ($keranjangs as $keranjang) {
-                Detailpesan::create([
+                Detailpesanan::create([
                     'id_pesanan' => $pesan_id,
                     'id_produk' => $keranjang->id_produk,
                     'jml' => $keranjang->jml,
@@ -98,12 +98,8 @@ class MejaController extends Controller
             DB::table('keranjangs')->where('id_meja',$id_meja)->delete();
         }
 
-        return redirect("meja/pembayaran")->with('success', 'Data successfully Created');
+        return redirect()->route('pembayaran.index')->with('success', 'Pesanan successfully created');
     }
 
-    public function pembayaran(Request $request)
-    {
-        echo "oke";
-    }
 
 }

@@ -29,6 +29,7 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{$keranjang->no_meja}}</td>
+                        <td><img src="{{ Storage::url('gambarproduk/'.$keranjang->path_gambar) }}" style="width:60px; height:60px;"></td>
                         <td>{{$keranjang->nama_produk}}</td>
                         <td>{{$keranjang->jml}}</td>
                         <td>{{$keranjang->harga_bayar}}</td>

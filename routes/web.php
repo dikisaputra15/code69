@@ -7,6 +7,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\MejaController;
+use App\Http\Controllers\PembayaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,8 +33,8 @@ Route::get('/kategori/{id}/pilihkategori', [App\Http\Controllers\KategoriControl
 Route::get('/meja/{id}/lihatpesanan', [App\Http\Controllers\MejaController::class, 'lihatpesanan']);
 Route::get('/keranjang/delker/{id}', [App\Http\Controllers\KeranjangController::class, 'destroykeranjang']);
 Route::post('/meja/storepesan', [App\Http\Controllers\MejaController::class, 'storepesan']);
-Route::get('/meja/pembayaran', [App\Http\Controllers\MejaController::class, 'pembayaran']);
 Route::resource('keranjang', KeranjangController::class);
+Route::resource('pembayaran', PembayaranController::class);
 
 Route::get('/admin', function () {
     return view('pages.auth.loginadmin');
