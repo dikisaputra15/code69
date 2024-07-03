@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_pemesan');
             $table->double('total_bayar');
             $table->enum('status', ['Unpaid', 'Paid']);
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
