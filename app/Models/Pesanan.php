@@ -14,5 +14,7 @@ class Pesanan extends Model
         'tgl_pemesanan',
         'nama_pemesan',
         'total_bayar',
+        'status',
+        'keterangan',
     ];
 }

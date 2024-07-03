@@ -1,12 +1,12 @@
-@extends('layouts.appfront')
+@extends('layouts.app')
 
-@section('title', 'Pembayaran')
+@section('title', 'Transaksi')
 
 @section('main')
-<h1 class="h3 mb-2 text-gray-800">Pembayaran</h1>
+<h1 class="h3 mb-2 text-gray-800">Transaksi</h1>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Pembayaran</h6>
+        <h6 class="m-0 font-weight-bold text-primary">History Transaksi</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -18,7 +18,8 @@
                         <th>Nomor Meja</th>
                         <th>Nama Pemesan</th>
                         <th>Total Bayar</th>
-                        <th>Action</th>
+                        <th>Status</th>
+                        <th>Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,19 +31,8 @@
                         <td>{{$pesanan->no_meja}}</td>
                         <td>{{$pesanan->nama_pemesan}}</td>
                         <td>{{$pesanan->total_bayar}}</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <?php if($pesanan->status == 'Unpaid') { ?>
-                                    <a href="/pembayaran/{{$pesanan->id}}/bayar"
-                                        class="btn btn-sm btn-info btn-icon">
-                                        <i class="fas fa-edit"></i>
-                                        Bayar
-                                    </a>
-                                <?php }else{ ?>
-                                    <h5>Pembayaran Sukses</h5>
-                                <?php } ?>
-                            </div>
-                        </td>
+                        <td>{{$pesanan->status}}</td>
+                        <td>{{$pesanan->keterangan}}</td>
                     </tr>
                 @endforeach
                 </tbody>

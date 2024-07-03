@@ -33,6 +33,7 @@ Route::get('/kategori/{id}/pilihkategori', [App\Http\Controllers\KategoriControl
 Route::get('/meja/{id}/lihatpesanan', [App\Http\Controllers\MejaController::class, 'lihatpesanan']);
 Route::get('/keranjang/delker/{id}', [App\Http\Controllers\KeranjangController::class, 'destroykeranjang']);
 Route::post('/meja/storepesan', [App\Http\Controllers\MejaController::class, 'storepesan']);
+Route::get('/pembayaran/{id}/bayar', [App\Http\Controllers\PembayaranController::class, 'bayar']);
 Route::resource('keranjang', KeranjangController::class);
 Route::resource('pembayaran', PembayaranController::class);
 
@@ -41,13 +42,18 @@ Route::get('/admin', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('home', function () {
-        return view('pages.dashboard');
-    })->name('home');
+    // Route::get('home', function () {
+    //     return view('pages.dashboard');
+    // })->name('home');
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('home');
 
     Route::resource('user', UserController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('warung', WarungController::class);
     Route::resource('produk', ProdukController::class);
     Route::resource('meja', MejaController::class);
+    Route::get('/transaksi', [App\Http\Controllers\PembayaranController::class, 'transaksi']);
+    Route::get('/pesananmasuk', [App\Http\Controllers\PembayaranController::class, 'pesananmasuk']);
+    Route::get('/pesananmasuk/update/{id}', [App\Http\Controllers\PembayaranController::class, 'updatepesananmasuk']);
 });

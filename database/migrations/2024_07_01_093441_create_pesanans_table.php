@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('tgl_pemesanan');
             $table->string('nama_pemesan');
             $table->double('total_bayar');
+            $table->enum('status', ['Unpaid', 'Paid']);
             $table->timestamps();
         });
     }

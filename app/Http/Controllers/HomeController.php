@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warung;
+use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,5 +21,11 @@ class HomeController extends Controller
         $mejas = DB::table('mejas')->orderBy('id', 'asc')->get();
         $produks = DB::table('produks')->where('id_warung', $id)->orderBy('produks.id', 'desc')->get();
         return view('pages.fronts.lihatproduk', compact('warung','produks', 'mejas'));
+    }
+
+    public function dashboard(Request $request)
+    {
+        $jmlpesanan = Pesanan::where('status', 'Paid')->where('keterangan', 'diproses')->count();
+        return view('pages.dashboard', compact('jmlpesanan'));
     }
 }

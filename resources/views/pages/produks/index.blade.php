@@ -21,7 +21,7 @@
                         <th>Nama Warung</th>
                         <th>Kategori</th>
                         <th>Nama Produk</th>
-                        <th>Stok</th>
+                        <th>Status Produk</th>
                         <th>Harga</th>
                         <th>Gambar</th>
                         <th>Deskripsi</th>
@@ -36,7 +36,7 @@
                             <td>{{ $produk->nama_warung }}</td>
                             <td>{{ $produk->nama_kategori }}</td>
                             <td>{{ $produk->nama_produk }}</td>
-                            <td>{{ $produk->stok }}</td>
+                            <td>{{ $produk->status_produk }}</td>
                             <td>{{ $produk->harga }}</td>
                             <td><img src="{{ Storage::url('gambarproduk/'.$produk->path_gambar) }}" style="width:60px; height:60px;"></td>
                             <td>{{ $produk->deskripsi_produk }}</td>

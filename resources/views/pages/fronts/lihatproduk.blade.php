@@ -25,6 +25,7 @@
             <div class="card-body">
               <h5 class="card-title">{{$produk->nama_produk}}</h5>
               <p class="card-text">Rp. {{$produk->harga}}</p>
+              <?php if($produk->status_produk == 'tersedia'){ ?>
               <div class="form-group">
               <input type="number" name="jml" class="form-control" value="1">
               <input type="number" name="id_produk" class="form-control" value="{{$produk->id}}" hidden>
@@ -39,6 +40,9 @@
                 </select>
              </div>
               <button class="btn btn-primary">Pesan</button>
+              <?php }else{ ?>
+                  <h5>Habis</h5>
+              <?php } ?>
             </form>
             </div>
           </div>

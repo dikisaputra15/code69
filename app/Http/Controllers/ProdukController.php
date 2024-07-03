@@ -42,7 +42,7 @@ class ProdukController extends Controller
             'id_warung' => $request->id_warung,
             'id_kategori' => $request->id_kategori,
             'nama_produk' => $request->nama_produk,
-            'stok' => $request->stok,
+            'status_produk' => $request->status_produk,
             'harga' => $request->harga,
             'deskripsi_produk' => $request->deskripsi_produk,
             'path_gambar' => $filename
@@ -92,7 +92,7 @@ class ProdukController extends Controller
                 'id_warung' => $request->id_warung,
                 'id_kategori' => $request->id_kategori,
                 'nama_produk' => $request->nama_produk,
-                'stok' => $request->stok,
+                'status_produk' => $request->status_produk,
                 'harga' => $request->harga,
                 'deskripsi_produk' => $request->deskripsi_produk,
                 'path_gambar' => $filename
@@ -102,7 +102,7 @@ class ProdukController extends Controller
                 'id_warung' => $request->id_warung,
                 'id_kategori' => $request->id_kategori,
                 'nama_produk' => $request->nama_produk,
-                'stok' => $request->stok,
+                'status_produk' => $request->status_produk,
                 'harga' => $request->harga,
                 'deskripsi_produk' => $request->deskripsi_produk
             ]);

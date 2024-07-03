@@ -77,7 +77,9 @@ class MejaController extends Controller
             'id_meja' => $id_meja,
             'tgl_pemesanan' => $tgl_now,
             'nama_pemesan' => $nama_pemesan,
-            'total_bayar' => $request->total_bayar
+            'total_bayar' => $request->total_bayar,
+            'status' => 'Unpaid',
+            'keterangan' => 'diproses'
         ]);
 
         if($pesan){
@@ -95,6 +97,7 @@ class MejaController extends Controller
                     'sub_total' => $keranjang->sub_total
                 ]);
             }
+
             DB::table('keranjangs')->where('id_meja',$id_meja)->delete();
         }
 

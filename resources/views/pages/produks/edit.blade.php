@@ -64,8 +64,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Stok</label>
-                                <input type="number" class="form-control" name="stok" value="{{ $produk->stok }}">
+                                <label>Status Produk</label>
+                                <select class="form-control" name="status_produk">
+                                    <option value="tersedia" <?php if($produk->status_produk == 'tersedia'){ echo "selected"; } ?>>tersedia</option>
+                                    <option value="tidak tersedia" <?php if($produk->status_produk == 'tidak tersedia'){ echo "selected"; } ?>>tidak tersedia</option>
+                                </select>
                             </div>
 
                             <div class="form-group">

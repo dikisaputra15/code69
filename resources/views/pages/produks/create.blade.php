@@ -42,8 +42,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Stok</label>
-                                <input type="number" class="form-control" name="stok" required>
+                                <label>Status Produk</label>
+                                <select class="form-control" name="status_produk">
+                                    <option value="tersedia">Tersedia</option>
+                                    <option value="tidak tersedia">Tidak Tersedia</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
