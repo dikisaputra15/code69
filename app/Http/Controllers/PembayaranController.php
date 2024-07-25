@@ -27,7 +27,7 @@ class PembayaranController extends Controller
             ->join('produks', 'produks.id', '=', 'detailpesanans.id_produk')
             ->select('detailpesanans.*', 'produks.nama_produk', 'produks.path_gambar')
             ->where('detailpesanans.id_pesanan', $id)->orderBy('detailpesanans.id', 'desc')->get();
-        
+
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
@@ -55,7 +55,7 @@ class PembayaranController extends Controller
     public function callback(Request $request)
     {
         $serverKey = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey); 
+        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
         if($hashed == $request->signature_key){
             if($request->transaction_status == 'capture'){
                 $order = Pesanan::find($request->order_id);
@@ -66,20 +66,25 @@ class PembayaranController extends Controller
 
     public function transaksi(Request $request)
     {
-        $pesanans = DB::table('pesanans')
-        ->join('mejas', 'mejas.id', '=', 'pesanans.id_meja')
-        ->select('pesanans.*', 'mejas.no_meja')
-        ->orderBy('pesanans.id', 'desc')->get();
-        return view('pages.pembayarans.transaksi', compact('pesanans'));
+        $id = auth()->user()->id_warung;
+        if(auth()->user()->id_warung == 0){
+            $warungs = DB::table('warungs')->orderBy('id', 'desc')->get();
+        }else{
+            $warungs = DB::table('warungs')->where('id', $id)->orderBy('id', 'desc')->get();
+        }
+        return view('pages.pembayarans.transaksi', compact('warungs'));
     }
 
     public function pesananmasuk(Request $request)
     {
+        $id = auth()->user()->id_warung;
         $pesanans = DB::table('pesanans')
         ->join('mejas', 'mejas.id', '=', 'pesanans.id_meja')
-        ->select('pesanans.*', 'mejas.no_meja')
+        ->join('detailpesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
+        ->select('pesanans.*', 'mejas.no_meja', 'detailpesanans.*')
         ->where('pesanans.status', 'Paid')
         ->where('pesanans.keterangan', 'diproses')
+        ->where('detailpesanans.id_warung', $id)
         ->orderBy('pesanans.id', 'desc')
         ->get();
         return view('pages.pembayarans.pesananmasuk', compact('pesanans'));
@@ -87,11 +92,26 @@ class PembayaranController extends Controller
 
     public function updatepesananmasuk($id)
     {
-        DB::table('pesanans')->where('id',$id)->update([
+        $detail = \App\Models\Detailpesanan::findOrFail($id);
+        $id_pesanan = $detail->id_pesanan;
+        DB::table('pesanans')->where('id',$id_pesanan)->update([
             'keterangan' => 'selesai'
         ]);
 
         return redirect("/pesananmasuk");
+    }
+
+    public function allpesanan(Request $request)
+    {
+        $id = auth()->user()->id_warung;
+        $pesanans = DB::table('pesanans')
+        ->join('mejas', 'mejas.id', '=', 'pesanans.id_meja')
+        ->join('detailpesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
+        ->select('pesanans.*', 'mejas.no_meja', 'detailpesanans.*')
+        ->where('detailpesanans.id_warung', $id)
+        ->orderBy('pesanans.id', 'desc')
+        ->get();
+        return view('pages.pembayarans.allpesanan', compact('pesanans'));
     }
 
 }

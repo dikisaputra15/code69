@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     // })->name('home');
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('home');
+    Route::post('/pdfpenjualan', [App\Http\Controllers\HomeController::class, 'lihatpdf']);
 
     Route::resource('user', UserController::class);
     Route::resource('kategori', KategoriController::class);
@@ -55,5 +56,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('meja', MejaController::class);
     Route::get('/transaksi', [App\Http\Controllers\PembayaranController::class, 'transaksi']);
     Route::get('/pesananmasuk', [App\Http\Controllers\PembayaranController::class, 'pesananmasuk']);
+    Route::get('/allpesanan', [App\Http\Controllers\PembayaranController::class, 'allpesanan']);
     Route::get('/pesananmasuk/update/{id}', [App\Http\Controllers\PembayaranController::class, 'updatepesananmasuk']);
 });
