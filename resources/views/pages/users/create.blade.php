@@ -35,6 +35,17 @@
                         <input type="password" class="form-control" name="password" required>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label>Nama Warung</label>
+                    <select class="form-control" name="id_warung">
+                            <option>-Nama Warung-</option>
+                        @foreach ($warungs as $warung)
+                            <option value="{{$warung->id}}">{{$warung->nama_warung}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label class="form-label">Roles</label>
                     <div class="selectgroup w-100">
@@ -44,8 +55,12 @@
                             Admin
                         </label>
                         <label class="selectgroup-item">
-                            <input type="radio" name="roles" value="user" class="radio">
-                            User
+                            <input type="radio" name="roles" value="penjual" class="radio">
+                            Penjual
+                        </label>
+                        <label class="selectgroup-item">
+                            <input type="radio" name="roles" value="pemilik" class="radio">
+                            Pemilik
                         </label>
                     </div>
                 </div>

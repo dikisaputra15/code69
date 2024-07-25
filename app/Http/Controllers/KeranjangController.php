@@ -22,6 +22,7 @@ class KeranjangController extends Controller
         Keranjang::create([
             'id_produk' => $request->id_produk,
             'id_meja' => $request->id_meja,
+            'id_warung' => $request->id_warung,
             'jml' => $request->jml,
             'harga_bayar' => $request->harga_bayar,
             'sub_total' => $sub_total

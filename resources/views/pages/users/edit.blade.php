@@ -36,6 +36,27 @@
                         <input type="password" class="form-control" name="password">
                     </div>
                 </div>
+
+                <div class="form-group">
+                                <label>Nama Warung</label>
+                                <select class="form-control" name="id_warung">
+                                    <?php
+                                        foreach ($warungs as $warung) {
+
+                                        if ($warung->id==$user->id_warung) {
+                                            $select="selected";
+                                        }else{
+                                            $select="";
+                                        }
+
+                                     ?>
+                                        <option <?php echo $select; ?> value="<?php echo $warung->id;?>"><?php echo $warung->nama_warung; ?></option>
+
+                                     <?php } ?>
+
+                                </select>
+                </div>
+
                 <div class="form-group">
                     <label class="form-label">Roles</label>
                     <div class="selectgroup w-100">
@@ -45,9 +66,14 @@
                             Admin
                         </label>
                         <label class="selectgroup-item">
-                            <input type="radio" name="roles" value="user" class="radio"
-                            @if ($user->roles == 'user') checked @endif>
-                            User
+                            <input type="radio" name="roles" value="penjual" class="radio"
+                            @if ($user->roles == 'penjual') checked @endif>
+                            Penjual
+                        </label>
+                        <label class="selectgroup-item">
+                            <input type="radio" name="roles" value="pemilik" class="radio"
+                            @if ($user->roles == 'pemilik') checked @endif>
+                            Pemilik
                         </label>
                     </div>
                 </div>

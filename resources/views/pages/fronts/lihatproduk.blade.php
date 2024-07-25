@@ -30,6 +30,7 @@
               <input type="number" name="jml" class="form-control" value="1">
               <input type="number" name="id_produk" class="form-control" value="{{$produk->id}}" hidden>
               <input type="number" name="harga_bayar" class="form-control" value="{{$produk->harga}}" hidden>
+              <input type="text" name="id_warung" class="form-control" value="{{$warung->id}}" hidden>
               </div>
               <div class="form-group">
                 <select class="form-control" name="id_meja">

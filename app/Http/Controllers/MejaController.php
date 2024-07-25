@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meja;
 use App\Models\Pesanan;
+use App\Models\Keranjang;
 use App\Models\Detailpesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -62,8 +63,11 @@ class MejaController extends Controller
         $total = DB::table('keranjangs')
                 ->where('keranjangs.id_meja', $id)
                 ->sum('sub_total');
+       
         $meja = Meja::find($id);
+       
         return view('pages.mejas.lihatpesanan', compact('keranjangs','total','meja'));
+        
     }
 
     public function storepesan(Request $request)
@@ -92,6 +96,7 @@ class MejaController extends Controller
                 Detailpesanan::create([
                     'id_pesanan' => $pesan_id,
                     'id_produk' => $keranjang->id_produk,
+                    'id_warung' => $keranjang->id_warung,
                     'jml' => $keranjang->jml,
                     'harga_bayar' => $keranjang->harga_bayar,
                     'sub_total' => $keranjang->sub_total

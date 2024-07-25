@@ -24,7 +24,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('pages.users.create');
+        $warungs = DB::table('warungs')->orderBy('id', 'desc')->get();
+        return view('pages.users.create', compact('warungs'));
     }
 
     public function store(Request $request)
@@ -33,7 +34,8 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'roles' => $request->roles
+            'roles' => $request->roles,
+            'id_warung' => $request->id_warung
         ]);
 
         return redirect()->route('user.index')->with('success', 'User successfully created');
@@ -41,8 +43,9 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $warungs = DB::table('warungs')->orderBy('id', 'desc')->get();
         $user = \App\Models\User::findOrFail($id);
-        return view('pages.users.edit', compact('user'));
+        return view('pages.users.edit', compact('user','warungs'));
     }
 
     public function update(Request $request, $id)

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('id_produk');
             $table->string('id_meja');
+            $table->string('id_warung');
             $table->string('jml');
             $table->double('harga_bayar');
             $table->double('sub_total');
