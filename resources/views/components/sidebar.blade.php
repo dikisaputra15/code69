@@ -63,6 +63,8 @@
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="/transaksi">Laporan Penjualan</a>
+            <a class="collapse-item" href="/lapwarunglaris">Laporan Warung Terlaris</a>
+            <a class="collapse-item" href="/lapproduklaris">Laporan Produk Terlaris</a>
         </div>
     </div>
 </li>
@@ -102,6 +104,8 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="/transaksi">Laporan Penjualan</a>
+            <a class="collapse-item" href="/lapwarunglaris">Laporan Warung Terlaris</a>
+            <a class="collapse-item" href="/lapproduklaris">Laporan Produk Terlaris</a>
         </div>
     </div>
 </li>
@@ -122,6 +126,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/transaksi">Laporan Penjualan</a>
+                <a class="collapse-item" href="/lapwarunglaris">Laporan Warung Terlaris</a>
+                <a class="collapse-item" href="/lapproduklaris">Laporan Produk Terlaris</a>
             </div>
         </div>
     </li>

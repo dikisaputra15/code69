@@ -39,10 +39,12 @@ class HomeController extends Controller
 
         $pesanans = DB::table('detailpesanans')
                 ->join('pesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
+                ->join('produks', 'produks.id', '=', 'detailpesanans.id_produk')
+                ->join('warungs', 'warungs.id', '=', 'detailpesanans.id_warung')
                 ->whereBetween('pesanans.tgl_pemesanan', [$start_date, $end_date])
                 ->where('pesanans.status', 'Paid')
                 ->where('detailpesanans.id_warung', $id_warung)
-                ->select('pesanans.*', 'detailpesanans.*')
+                ->select('pesanans.*', 'detailpesanans.*', 'warungs.nama_warung', 'produks.nama_produk')
                 ->get();
 
         $total = DB::table('detailpesanans')
@@ -56,5 +58,29 @@ class HomeController extends Controller
         $pdf = PDF::loadView('lappenjualanpdf', compact('pesanans','total'));
         $pdf->setPaper('A4', 'potrait');
         return $pdf->stream('lappenjualanpdf.pdf');
+    }
+
+    public function lapwarunglaris()
+    {
+        $datawarung = DB::table('detailpesanans')
+                    ->join('warungs', 'warungs.id', '=', 'detailpesanans.id_warung')
+                    ->select('warungs.nama_warung as warung', DB::raw('count(detailpesanans.id) as total'))
+                    ->groupBy('warung')
+                    ->orderBy('total', 'desc')
+                    ->get();
+
+        return view('pages.pembayarans.lapwarunglaris', compact('datawarung'));
+    }
+
+    public function lapproduklaris()
+    {
+        $dataproduk = DB::table('detailpesanans')
+        ->join('produks', 'produks.id', '=', 'detailpesanans.id_produk')
+        ->select('produks.nama_produk as produk', DB::raw('count(detailpesanans.id) as total'))
+        ->groupBy('produk')
+        ->orderBy('total', 'desc')
+        ->get();
+
+        return view('pages.pembayarans.lapproduklaris', compact('dataproduk'));
     }
 }

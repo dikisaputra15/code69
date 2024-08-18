@@ -59,4 +59,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pesananmasuk', [App\Http\Controllers\PembayaranController::class, 'pesananmasuk']);
     Route::get('/allpesanan', [App\Http\Controllers\PembayaranController::class, 'allpesanan']);
     Route::get('/pesananmasuk/update/{id}', [App\Http\Controllers\PembayaranController::class, 'updatepesananmasuk']);
+    Route::get('/lapwarunglaris', [App\Http\Controllers\HomeController::class, 'lapwarunglaris']);
+    Route::get('/lapproduklaris', [App\Http\Controllers\HomeController::class, 'lapproduklaris']);
 });
