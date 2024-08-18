@@ -39,7 +39,7 @@
                                         Bayar
                                     </a>
                                 <?php }else{ ?>
-                                    <h5>Pembayaran Sukses</h5>
+                                    <a href="/pembayaran/{{$pesanan->id}}/invoice" class="btn btn-sm btn-success">Invoice</a>
                                 <?php } ?>
                             </div>
                         </td>

@@ -1,18 +1,16 @@
 @extends('layouts.appfront')
 
-@section('title', 'detail Pesanan')
+@section('title', 'invoice')
 
 @push('style')
-    <script type="text/javascript"
-		src="{{config('midtrans.snap_url')}}"
-    data-client-key="{{config('midtrans.client_key')}}"></script>
+
 @endpush
 
 @section('main')
-<h1 class="h3 mb-2 text-gray-800">Detail Pesanan</h1>
+<h1 class="h3 mb-2 text-gray-800">Invoice</h1>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Detail Pesanan</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
     </div>
     <div class="card-body">
 
@@ -71,16 +69,6 @@
                           {{$meja->no_meja}}
                         </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button class="btn btn-primary" id="pay-button">Bayar Sekarang</button>
-                        </td>
-                    </tr>
 
                 </tbody>
             </table>
@@ -89,34 +77,5 @@
 </div>
 
 @endsection
-
 @push('scripts')
-<script type="text/javascript">
-    // For example trigger on button clicked, or any time you need
-    var payButton = document.getElementById('pay-button');
-    payButton.addEventListener('click', function () {
-      // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token.
-      // Also, use the embedId that you defined in the div above, here.
-      window.snap.pay('{{$snapToken}}', {
-        onSuccess: function (result) {
-          /* You may add your own implementation here */
-            // alert("payment success!");
-            window.location.href = '/pembayaran'
-            console.log(result);
-        },
-        onPending: function (result) {
-          /* You may add your own implementation here */
-          alert("wating your payment!"); console.log(result);
-        },
-        onError: function (result) {
-          /* You may add your own implementation here */
-          alert("payment failed!"); console.log(result);
-        },
-        onClose: function () {
-          /* You may add your own implementation here */
-          alert('you closed the popup without finishing the payment');
-        }
-      });
-    });
-  </script>
 @endpush

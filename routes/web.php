@@ -34,6 +34,7 @@ Route::get('/meja/{id}/lihatpesanan', [App\Http\Controllers\MejaController::clas
 Route::get('/keranjang/delker/{id}', [App\Http\Controllers\KeranjangController::class, 'destroykeranjang']);
 Route::post('/meja/storepesan', [App\Http\Controllers\MejaController::class, 'storepesan']);
 Route::get('/pembayaran/{id}/bayar', [App\Http\Controllers\PembayaranController::class, 'bayar']);
+Route::get('/pembayaran/{id}/invoice', [App\Http\Controllers\PembayaranController::class, 'invoice']);
 Route::resource('keranjang', KeranjangController::class);
 Route::resource('pembayaran', PembayaranController::class);
 

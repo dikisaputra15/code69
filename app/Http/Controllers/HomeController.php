@@ -44,7 +44,14 @@ class HomeController extends Controller
                 ->where('detailpesanans.id_warung', $id_warung)
                 ->select('pesanans.*', 'detailpesanans.*')
                 ->get();
-        $total = Detailpesanan::whereBetween('created_at', [$start_date, $end_date])->where('detailpesanans.id_warung', $id_warung)->sum('sub_total');
+
+        $total = DB::table('detailpesanans')
+            ->join('pesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
+            ->whereBetween('pesanans.tgl_pemesanan', [$start_date, $end_date])
+            ->where('pesanans.status', 'Paid')
+            ->where('detailpesanans.id_warung', $id_warung)
+            ->select('pesanans.*', 'detailpesanans.*')
+            ->sum('detailpesanans.sub_total');
 
         $pdf = PDF::loadView('lappenjualanpdf', compact('pesanans','total'));
         $pdf->setPaper('A4', 'potrait');
