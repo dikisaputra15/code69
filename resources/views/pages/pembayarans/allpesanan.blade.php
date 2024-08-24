@@ -15,13 +15,11 @@
                     <tr>
                         <th>No</th>
                         <th>Tanggal Pemesanan</th>
-                        <th>Nomor Meja</th>
                         <th>Nama Pemesan</th>
-                        <th>Jumlah</th>
-                        <th>Harga Bayar</th>
-                        <th>Subtotal</th>
+                        <th>Total Bayar</th>
                         <th>Status</th>
                         <th>Keterangan</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,13 +28,13 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{$pesanan->tgl_pemesanan}}</td>
-                        <td>{{$pesanan->no_meja}}</td>
                         <td>{{$pesanan->nama_pemesan}}</td>
-                        <td>{{$pesanan->jml}}</td>
-                        <td>{{$pesanan->harga_bayar}}</td>
-                        <td>{{$pesanan->sub_total}}</td>
+                        <td>{{$pesanan->total_bayar}}</td>
                         <td>{{$pesanan->status}}</td>
                         <td>{{$pesanan->keterangan}}</td>
+                        <td>
+                            <a href="/pembayaran/{{$pesanan->id}}/nota" class="btn btn-sm btn-primary">Nota</a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

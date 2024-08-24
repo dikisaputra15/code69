@@ -116,15 +116,24 @@ class PembayaranController extends Controller
 
     public function allpesanan(Request $request)
     {
-        $id = auth()->user()->id_warung;
         $pesanans = DB::table('pesanans')
-        ->join('mejas', 'mejas.id', '=', 'pesanans.id_meja')
-        ->join('detailpesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
-        ->select('pesanans.*', 'mejas.no_meja', 'detailpesanans.*')
-        ->where('detailpesanans.id_warung', $id)
         ->orderBy('pesanans.id', 'desc')
         ->get();
         return view('pages.pembayarans.allpesanan', compact('pesanans'));
+    }
+
+    public function nota($id)
+    {
+        $pesanan = Pesanan::find($id);
+        $produks = DB::table('pesanans')
+        ->join('mejas', 'mejas.id', '=', 'pesanans.id_meja')
+        ->join('detailpesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
+        ->join('produks', 'produks.id', '=', 'detailpesanans.id_produk')
+        ->select('detailpesanans.*', 'mejas.no_meja', 'produks.nama_produk', 'pesanans.*')
+        ->where('pesanans.id', $id)
+        ->orderBy('pesanans.id', 'desc')
+        ->get();
+        return view('pages.pembayarans.nota', compact('pesanan','produks'));
     }
 
 }

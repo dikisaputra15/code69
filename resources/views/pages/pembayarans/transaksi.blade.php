@@ -25,6 +25,7 @@
                     <label>Nama Warung</label>
                     <select class="form-control" name="id_warung">
                             <option>-Pilih Warung-</option>
+                            <option value="0">Semua Warung</option>
                         @foreach ($warungs as $warung)
                             <option value="{{$warung->id}}">{{$warung->nama_warung}}</option>
                         @endforeach

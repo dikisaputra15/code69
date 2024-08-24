@@ -1,4 +1,9 @@
-<h3><center>Laporan Penjualan</center></h3>
+<table>
+    <tr>
+        <td style="width:150px;"><img src="{{ public_path('img/garfu.jpg') }}" style="width: 80px; height: 60px;"></td>
+        <td><h3 style="text-align: center;">Laporan Penjualan Pujasera Walet Mas</h3></td>
+    </tr>
+  </table>
 <hr>
 
 <table border="1" cellspacing="0" cellpadding="5">
@@ -28,6 +33,12 @@
     <td colspan="6" style="text-align: center;">Total Pendapatan</td>
     <td>Rp. {{$total}}</td>
   </tr>
-</table>
+</table><br><br>
+
+
+<center>
+    <p>Penanggung Jawab</p><br><br>
+    <p>Syaril Hadidayat</p>
+</center>
 
 

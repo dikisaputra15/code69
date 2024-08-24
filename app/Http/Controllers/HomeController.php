@@ -37,15 +37,26 @@ class HomeController extends Controller
         $end_date = $request->end_date;
         $id_warung = $request->id_warung;
 
-        $pesanans = DB::table('detailpesanans')
-                ->join('pesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
-                ->join('produks', 'produks.id', '=', 'detailpesanans.id_produk')
-                ->join('warungs', 'warungs.id', '=', 'detailpesanans.id_warung')
-                ->whereBetween('pesanans.tgl_pemesanan', [$start_date, $end_date])
-                ->where('pesanans.status', 'Paid')
-                ->where('detailpesanans.id_warung', $id_warung)
-                ->select('pesanans.*', 'detailpesanans.*', 'warungs.nama_warung', 'produks.nama_produk')
-                ->get();
+        if($request->id_warung == 0){
+            $pesanans = DB::table('detailpesanans')
+                    ->join('pesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
+                    ->join('produks', 'produks.id', '=', 'detailpesanans.id_produk')
+                    ->join('warungs', 'warungs.id', '=', 'detailpesanans.id_warung')
+                    ->whereBetween('pesanans.tgl_pemesanan', [$start_date, $end_date])
+                    ->where('pesanans.status', 'Paid')
+                    ->select('pesanans.*', 'detailpesanans.*', 'warungs.nama_warung', 'produks.nama_produk')
+                    ->get();
+        }else{
+            $pesanans = DB::table('detailpesanans')
+                    ->join('pesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
+                    ->join('produks', 'produks.id', '=', 'detailpesanans.id_produk')
+                    ->join('warungs', 'warungs.id', '=', 'detailpesanans.id_warung')
+                    ->whereBetween('pesanans.tgl_pemesanan', [$start_date, $end_date])
+                    ->where('pesanans.status', 'Paid')
+                    ->where('detailpesanans.id_warung', $id_warung)
+                    ->select('pesanans.*', 'detailpesanans.*', 'warungs.nama_warung', 'produks.nama_produk')
+                    ->get();
+        }
 
         $total = DB::table('detailpesanans')
             ->join('pesanans', 'pesanans.id', '=', 'detailpesanans.id_pesanan')
