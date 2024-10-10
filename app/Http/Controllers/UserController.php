@@ -43,9 +43,8 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $warungs = DB::table('warungs')->orderBy('id', 'desc')->get();
         $user = \App\Models\User::findOrFail($id);
-        return view('pages.users.edit', compact('user','warungs'));
+        return view('pages.users.edit', compact('user'));
     }
 
     public function update(Request $request, $id)

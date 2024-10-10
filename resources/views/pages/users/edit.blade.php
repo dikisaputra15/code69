@@ -38,26 +38,6 @@
                 </div>
 
                 <div class="form-group">
-                                <label>Nama Warung</label>
-                                <select class="form-control" name="id_warung">
-                                    <?php
-                                        foreach ($warungs as $warung) {
-
-                                        if ($warung->id==$user->id_warung) {
-                                            $select="selected";
-                                        }else{
-                                            $select="";
-                                        }
-
-                                     ?>
-                                        <option <?php echo $select; ?> value="<?php echo $warung->id;?>"><?php echo $warung->nama_warung; ?></option>
-
-                                     <?php } ?>
-
-                                </select>
-                </div>
-
-                <div class="form-group">
                     <label class="form-label">Roles</label>
                     <div class="selectgroup w-100">
                         <label class="selectgroup-item">
