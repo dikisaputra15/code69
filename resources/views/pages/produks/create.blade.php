@@ -16,25 +16,6 @@
         <form action="{{ route('produk.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="card-body">
-                <div class="form-group">
-                    <label>Nama Warung</label>
-                    <select class="form-control" name="id_warung">
-                            <option>-Pilih Warung-</option>
-                        @foreach ($warungs as $warung)
-                            <option value="{{$warung->id}}">{{$warung->nama_warung}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Kategori</label>
-                    <select class="form-control" name="id_kategori">
-                            <option>-Pilih Katgeori-</option>
-                        @foreach ($kategoris as $kategori)
-                            <option value="{{$kategori->id}}">{{$kategori->nama_kategori}}</option>
-                        @endforeach
-                    </select>
-                </div>
 
                             <div class="form-group">
                                 <label>Nama Produk</label>

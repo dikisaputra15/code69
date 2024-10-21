@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        return view('welcome');
+        return view('pages.fronts.index');
     }
 
     public function dashboard(Request $request)

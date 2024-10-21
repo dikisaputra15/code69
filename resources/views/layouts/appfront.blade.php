@@ -2,74 +2,88 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>@yield('title')</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Coding santai dan asik</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
 
-    <!-- General CSS Files -->
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    @stack('style')
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('Mentor/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('Mentor/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('Mentor/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('Mentor/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('Mentor/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <!-- Template CSS -->
+  <!-- Main CSS File -->
+  <link href="{{ asset('Mentor/assets/css/main.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
+  <!-- =======================================================
+  * Template Name: Mentor
+  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
-<body id="page-top">
+<body class="index-page">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+ <!-- Header -->
+@include('components.headerfront')
 
-         <!-- Sidebar -->
-         @include('components.sidebarfront')
 
-         <div id="content-wrapper" class="d-flex flex-column">
-         <div id="content">
-            @include('components.headerfront')
+  <main class="main">
 
-            <div class="container-fluid">
-              <!-- Content -->
-              @yield('main')
-            </div>
-         </div>
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
 
-            <!-- Footer -->
-            @include('components.footer')
+      <img src="{{ asset('Mentor/assets/img/hero-bg.jpg') }}" alt="" data-aos="fade-in">
+
+      <div class="container">
+        <h2 data-aos="fade-up" data-aos-delay="100">Learning Today,<br>Leading Tomorrow</h2>
+        <p data-aos="fade-up" data-aos-delay="200">We are team of talented designers making websites with Bootstrap</p>
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="courses.html" class="btn-get-started">Get Started</a>
         </div>
-    </div>
+      </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    </section><!-- /Hero Section -->
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+       <!-- Content -->
+       @yield('main')
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+  </main>
 
-    <!-- Page level plugins -->
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+ <!-- Footer -->
+ @include('components.footerfront')
 
-    @stack('scripts')
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+  <!-- Preloader -->
+  <div id="preloader"></div>
 
-    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+  <!-- Vendor JS Files -->
+  <script src="{{ asset('Mentor/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('Mentor/assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ asset('Mentor/assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('Mentor/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('Mentor/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+  <script src="{{ asset('Mentor/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+  <!-- Main JS File -->
+  <script src="{{ asset('Mentor/assets/js/main.js') }}"></script>
+
 </body>
 
 </html>

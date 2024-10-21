@@ -18,47 +18,14 @@
             @method('PUT')
 
             <div class="card-body">
+
+
+                <div class="form-group" hidden>
+                    <label>Nomor Produk</label>
+                    <input type="text" class="form-control" name="no_produk" value="{{ $produk->no_produk }}">
+                </div>
+
                 <div class="form-group">
-                                <label>Nama Warung</label>
-                                <select class="form-control" name="id_warung">
-                                    <?php
-                                        foreach ($warungs as $warung) {
-
-                                        if ($warung->id==$produk->id_kategori) {
-                                            $select="selected";
-                                        }else{
-                                            $select="";
-                                        }
-
-                                     ?>
-                                        <option <?php echo $select; ?> value="<?php echo $warung->id;?>"><?php echo $warung->nama_warung; ?></option>
-
-                                     <?php } ?>
-
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Kategori</label>
-                                <select class="form-control" name="id_kategori">
-                                    <?php
-                                        foreach ($kategoris as $kategori) {
-
-                                        if ($kategori->id==$produk->id_kategori) {
-                                            $select="selected";
-                                        }else{
-                                            $select="";
-                                        }
-
-                                     ?>
-                                        <option <?php echo $select; ?> value="<?php echo $kategori->id;?>"><?php echo $kategori->nama_kategori; ?></option>
-
-                                     <?php } ?>
-
-                                </select>
-                            </div>
-
-                            <div class="form-group">
                                 <label>Nama Produk</label>
                                 <input type="text" class="form-control" name="nama_produk" value="{{ $produk->nama_produk }}">
                             </div>
