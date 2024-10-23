@@ -35,5 +35,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('user', UserController::class);
     Route::resource('produk', ProdukController::class);
+    Route::get('/daftar/{id}/formdaftar', [App\Http\Controllers\HomeController::class, 'formdaftar']);
     Route::get('/transaksi', [App\Http\Controllers\PembayaranController::class, 'transaksi']);
 });
