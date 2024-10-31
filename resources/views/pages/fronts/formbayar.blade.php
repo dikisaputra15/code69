@@ -44,7 +44,7 @@
 
         <div class="col-sm-6">
           <div class="card">
-            <img class="card-img-top" src="{{ asset('img/dana-logo.png') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ asset('img/Dana-logo.png') }}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Dana</h5>
               <p class="card-text">A.N Diki Saputra</p>
